@@ -4,7 +4,8 @@
 
     public void Execute()
     {
-        tileData.IsPloughed = true;
+        tileData.RequiresUpdate = true;
+        tileData.groundType = GameManager.Instance.availableGroundTypes[1];
     }
 }
 

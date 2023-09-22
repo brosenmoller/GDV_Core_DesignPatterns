@@ -6,7 +6,7 @@ public class InputManager
     {
         if (Input.GetMouseButtonDown(0))
         {
-            EventManager.InvokeEvent(EventType.ON_SELECT);
+            EventManager.InvokeEvent(EventType.ON_MOUSE_DOWN);
         }
     }
 }

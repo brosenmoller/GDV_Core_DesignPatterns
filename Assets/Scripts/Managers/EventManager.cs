@@ -4,7 +4,7 @@ using System.Collections.Generic;
 public enum EventType
 {
     ON_TICK,
-    ON_SELECT,
+    ON_MOUSE_DOWN,
 }
 
 public static class EventManager

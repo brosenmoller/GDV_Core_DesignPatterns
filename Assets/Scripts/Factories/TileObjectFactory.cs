@@ -16,14 +16,12 @@ public class TileObjectFactory
             newGameObject.AddComponent<MeshFilter>(),
             newGameObject.AddComponent<MeshRenderer>(),
             newGameObject.transform,
-            new TileData(newGameObject, groundType)
+            new TileData(groundType)
         );
 
-        tileObject.MeshRenderer.materials = groundType.Model.materials;
-        tileObject.MeshFilter.mesh = groundType.Model.mesh;
-        tileObject.Colllider.sharedMesh = groundType.Model.mesh;
+        tileObject.ApplyGroundType();
+
         tileObject.Transform.position = position;
-        tileObject.Transform.localScale = groundType.Model.scale;
         tileObject.Transform.parent = tileParent;
 
         return tileObject;

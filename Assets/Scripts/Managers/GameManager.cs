@@ -6,24 +6,30 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
 
     [Header("Farm")]
-    [SerializeField] private Crop[] availableCrops;
-    [SerializeField] private GroundType[] availableGroundTypes;
+    public Crop[] availableCrops;
+    public GroundType[] availableGroundTypes;
 
     [Header("Constructing Farm")]
     [SerializeField] private int farmHeight;
     [SerializeField] private int farmWidth;
     [SerializeField] private Transform tileParent;
+    [SerializeField] private Material hoverMaterial;
 
     [HideInInspector] public List<TileObject> land;
+
     private InputManager inputHandler;
     private TileObjectFactory tileObjectFactory;
+    private SelectionManager selectionManager;
 
     private void Awake()
     {
         Instance = this;
-
         inputHandler = new InputManager();
         tileObjectFactory = new TileObjectFactory(tileParent);
+        selectionManager = new SelectionManager(hoverMaterial);
+
+        EventManager.AddListener(EventType.ON_TICK, selectionManager.OnTick);
+        EventManager.AddListener(EventType.ON_MOUSE_DOWN, selectionManager.OnSelect);
 
         SetupLand();
     }

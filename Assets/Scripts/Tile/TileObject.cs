@@ -31,7 +31,15 @@ public class TileObject
 
         TileData.RequiresUpdate = false;
 
-       
+        ApplyGroundType();
+    }
+
+    public void ApplyGroundType()
+    {
+        MeshRenderer.materials = TileData.groundType.Model.materials;
+        MeshFilter.mesh = TileData.groundType.Model.mesh;
+        Colllider.sharedMesh = TileData.groundType.Model.mesh;
+        Transform.localScale = TileData.groundType.Model.scale;
     }
 
     private void GrowRandomizer()
@@ -43,8 +51,8 @@ public class TileObject
             TileData.RequiresUpdate = true;
             TileData.CurrentGrowthStage++;
 
-            foreach (Transform child in TileData.TileGameObject.transform) { Object.Destroy(child.gameObject); }
-            Object.Instantiate(TileData.asscoiatedCrop.cropPrefabs[TileData.CurrentGrowthStage], TileData.TileGameObject.transform);
+            foreach (Transform child in Transform) { Object.Destroy(child.gameObject); }
+            Object.Instantiate(TileData.asscoiatedCrop.cropPrefabs[TileData.CurrentGrowthStage], Transform);
 
             if (TileData.CurrentGrowthStage == TileData.asscoiatedCrop.cropPrefabs.Length - 1)
             {
