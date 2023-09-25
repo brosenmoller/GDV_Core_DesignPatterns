@@ -21,6 +21,13 @@ public class GameManager : MonoBehaviour
     private TileObjectFactory tileObjectFactory;
     private SelectionManager selectionManager;
 
+    public TileCommandType currentCommandType;
+
+    public void SetCommandType(int commandType)
+    {
+        currentCommandType = (TileCommandType)commandType;
+    }
+
     private void Awake()
     {
         Instance = this;

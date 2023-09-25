@@ -39,8 +39,25 @@ public class SelectionManager
     public void OnSelect()
     {
         if (currentHover == null) { return; }
-        new PloughCommand(currentHover.TileData).Execute();
-        Debug.Log("Plough: " + currentHover.TileData.groundType.name);
+        ExecuteCurrentCommand();
+    }
+    private void ExecuteCurrentCommand()
+    {
+        switch (GameManager.Instance.currentCommandType)
+        {
+            case TileCommandType.HARVEST:
+                new HarvestCommand(currentHover.TileData).Execute();
+                break;
+            case TileCommandType.PLANT_BEET:
+                new PlantCommand(currentHover.TileData, GameManager.Instance.availableCrops[0]).Execute();
+                break;
+            case TileCommandType.PLANT_TOMATO:
+                new PlantCommand(currentHover.TileData, GameManager.Instance.availableCrops[1]).Execute();
+                break;
+            case TileCommandType.PLOUGH:
+                new PloughCommand(currentHover.TileData).Execute();
+                break;
+        }
     }
 
     private bool TryGetTileObjectFromMouseRay(out TileObject tileObject)
