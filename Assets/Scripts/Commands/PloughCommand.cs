@@ -2,9 +2,13 @@
 {
     public PloughCommand(TileData _tileData) : base(_tileData) { }
 
-    public void Execute()
+    public override bool Check()
     {
-        tileData.RequiresUpdate = true;
+        return tileData.groundType == GameManager.Instance.availableGroundTypes[0];
+    }
+
+    public override void OnExecute()
+    {
         tileData.groundType = GameManager.Instance.availableGroundTypes[1];
     }
 }

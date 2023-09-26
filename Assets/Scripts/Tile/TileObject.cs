@@ -32,6 +32,7 @@ public class TileObject
         TileData.RequiresUpdate = false;
 
         ApplyGroundType();
+        PlaceCrop();
     }
 
     public void ApplyGroundType()
@@ -51,13 +52,28 @@ public class TileObject
             TileData.RequiresUpdate = true;
             TileData.CurrentGrowthStage++;
 
-            foreach (Transform child in Transform) { Object.Destroy(child.gameObject); }
-            Object.Instantiate(TileData.asscoiatedCrop.cropPrefabs[TileData.CurrentGrowthStage], Transform);
-
             if (TileData.CurrentGrowthStage == TileData.asscoiatedCrop.cropPrefabs.Length - 1)
             {
                 TileData.IsHarvestable = true;
             }
+        }
+    }
+
+    private void PlaceCrop()
+    {
+        if (!TileData.IsSeeded) { return; }
+
+        foreach (Transform child in Transform) { Object.Destroy(child.gameObject); }
+
+        if (TileData.IsHarvested)
+        {
+            TileData.asscoiatedCrop = null;
+            TileData.IsHarvested = false;
+            TileData.IsHarvestable = false;
+        }
+        else
+        {
+            Object.Instantiate(TileData.asscoiatedCrop.cropPrefabs[TileData.CurrentGrowthStage], Transform);
         }
     }
 }

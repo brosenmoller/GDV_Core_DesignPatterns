@@ -12,6 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9319e9004afb6464f864355639c192ae, type: 3}
   m_Name: Beet
   m_EditorClassIdentifier: 
-  Name: Beet
+  CropName: Beet
   GrowthChancePerTick: 300
-  cropPrefabs: []
+  cropPrefabs:
+  - {fileID: 919132149155446097, guid: b05884e66f640b04db72a968566b888b, type: 3}
+  - {fileID: 919132149155446097, guid: 68e1f0af4d5771f49b4bc78bcb3fdc9e, type: 3}
+  - {fileID: 919132149155446097, guid: 8f416847bbb6ab14fb152cd7bb68e4f6, type: 3}
+  - {fileID: 919132149155446097, guid: 39199e53f79036741ad9d246e621f906, type: 3}
+  - {fileID: 919132149155446097, guid: 53069f3b78a062445a8f8cec9cfcf513, type: 3}
